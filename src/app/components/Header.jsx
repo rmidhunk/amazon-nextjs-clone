@@ -1,12 +1,20 @@
+"use client";
+
 import { Input } from "@chakra-ui/react";
 import {
     Bars3Icon,
     MagnifyingGlassIcon,
     ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
+import { signIn, signOut } from "next-auth";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+    const router = useRouter();
+    const session = useSession();
+    console.log("session", session);
+
     return (
         <div>
             <div className="flex items-center justify-between gap-2 sm:gap-6 bg-amazon_blue p-2">
@@ -29,8 +37,19 @@ const Header = () => {
                 </div>
 
                 <div className="text-white text-xs sm:text-sm flex items-center gap-2 sm:gap-6 whitespace-nowrap">
-                    <div className="hover:underline">
-                        <p>Hello Midhun</p>
+                    <div
+                        onClick={() => {
+                            session?.status === "authenticated"
+                                ? router.push("/api/auth/signout")
+                                : router.push("/api/auth/signin");
+                        }}
+                        className="cursor-pointer hover:underline"
+                    >
+                        <p>
+                            {session?.status === "authenticated"
+                                ? `Hello ${session?.data?.user?.name}`
+                                : `Sign In`}
+                        </p>
                         <p>Accounts & Lists</p>
                     </div>
                     <div className="hover:underline">

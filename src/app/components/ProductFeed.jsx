@@ -24,8 +24,6 @@ const ProductFeed = () => {
         fetchData();
     }, []);
 
-    console.log("getproducts", products);
-
     return (
         <div className="w-[90%] mx-auto md:-mt-36 relative z-30">
             {loading && <Spinner />}
