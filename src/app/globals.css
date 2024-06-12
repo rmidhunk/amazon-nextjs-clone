@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GENERAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: 0 0;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    outline: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+@layer components {
+    .button {
+        @apply p-2 text-xs bg-gradient-to-b from-yellow-200 to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 active:from-yellow-500;
+    }
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    display: block;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.wrapper {
+    max-width: 1330px;
+    margin: 0 auto;
+    width: 90%;
+}
